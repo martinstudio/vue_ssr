@@ -17,3 +17,5 @@
 ## 1.8 webpack-merge@4(webpack合并文件)
 
 ## 1.9 concurrently(同时打包多个应用)
+
+## 2.0 koa-static(静态服务中间件：服务端加载静态资源)
