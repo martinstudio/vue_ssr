@@ -21,6 +21,12 @@ let render = VueServerRenderer.createBundleRenderer(serverBundle, {
 router.get('/', async (contxt) => {
     contxt.body = await render.renderToString()
 })
-app.use(router.routes()); // 注册路由
+
+// 如果访问不到就跳转到首页，加载首页时会重新调用前端路由
+// history api 404问题解决
+router.get('*', async contxt => {
+    contxt.body = await render.renderToString()
+})
 app.use(static(resolve(__dirname, 'dist'))) // 注册静态服务中间件
+app.use(router.routes()); // 注册路由
 app.listen(3003)

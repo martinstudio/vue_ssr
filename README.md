@@ -19,3 +19,5 @@
 ## 1.9 concurrently(同时打包多个应用)
 
 ## 2.0 koa-static(静态服务中间件：服务端加载静态资源)
+
+## 2.1 vue-router(vue路由插件)

@@ -1,19 +1,14 @@
 <!--  -->
 <template>
   <div id="app">
-    <Bar />
-    <Foo />
+    <router-link to="/">Foo</router-link>
+    <router-link to="/bar">Bar</router-link>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Bar from "./components/Bar.vue";
-import Foo from "./components/Foo.vue";
 export default {
-  components: {
-    Bar,
-    Foo,
-  },
   data() {
     return {};
   },
