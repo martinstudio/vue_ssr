@@ -1,6 +1,6 @@
 <!-- Foo -->
 <template>
-  <div style="color: red">Foo</div>
+  <div style="color: red" @click="handlerCilck">Foo</div>
 </template>
 
 <script>
@@ -13,6 +13,11 @@ export default {
   created() {},
   //生命周期 - 挂载完成（访问DOM元素）
   mounted() {},
+  methods: {
+    handlerCilck() {
+      alert("ookoo");
+    },
+  },
 };
 </script>
 <style scoped>

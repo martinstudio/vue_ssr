@@ -17,7 +17,7 @@ module.exports = merge(base, {
         new HtmlWebpackPlugin({
             filename: 'index.server.html',
             template: resolve(__dirname, '../public/index.server.html'),
-            excludeChunks: 'server', //排除自动引用服务端的包
+            excludeChunks: ['server'], //排除自动引用服务端的包
         })
     ]
 })
