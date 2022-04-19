@@ -8,23 +8,14 @@ const { resolve } = require('path')
 let app = new Koa(); // 创建一个服务实例
 let router = new Router(); // 创建路由实例
 
-// let vm = new Vue({
-//     data() {
-//         return {
-//             name: 'Jack'
-//         }
-//     },
-//     template: '<div>hello {{name}}</div>'
-// })
-
-const serverBundle = fs.readFileSync('./dist/server.bundle.js', 'utf8')
 const template = fs.readFileSync('./dist/index.server.html', 'utf8')
-// let render = VueServerRenderer.createRenderer({
-//     template
-// });
+const serverBundle = require('./dist/vue-ssr-server-bundle.json')
+// manifest 可获取前端打包信息
+const clientManifest = require('./dist/vue-ssr-client-manifest.json')
 // 通过服务端渲染打包服务端结果
 let render = VueServerRenderer.createBundleRenderer(serverBundle, {
-    template
+    template,
+    clientManifest
 })
 
 router.get('/', async (contxt) => {

@@ -2,6 +2,7 @@ const { resolve } = require('path')
 const merge = require('webpack-merge')
 const base = require('./webpack.base.js')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const VueSSRServerPlugin = require('vue-server-renderer/server-plugin')
 
 // 需要打包的是服务端，打包的是给node来用的
 module.exports = merge(base, {
@@ -18,6 +19,7 @@ module.exports = merge(base, {
             filename: 'index.server.html',
             template: resolve(__dirname, '../public/index.server.html'),
             excludeChunks: ['server'], //排除自动引用服务端的包
-        })
+        }),
+        new VueSSRServerPlugin()
     ]
 })
