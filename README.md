@@ -15,3 +15,5 @@
 ## 1.7 babel-loader@8(解析js文件)
 
 ## 1.8 webpack-merge@4(webpack合并文件)
+
+## 1.9 concurrently(同时打包多个应用)
