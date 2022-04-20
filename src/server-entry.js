@@ -6,8 +6,21 @@
  */
 import createApp from './app';
 
-export default () => {
-    const { app, router } = createApp();
-    // 服务端需要拿到一个vue实例，而且每个用户都是全新的
-    return app;
+export default (context) => {
+    // console.log(context, '-------------')
+    // const { app, router } = createApp();
+    // // 服务端需要拿到一个vue实例，而且每个用户都是全新的
+    // router.push(context.url)
+    // // router.onReady(() => {
+    // return app;
+    // // })
+
+    return new Promise((resolve, reject) => {
+        const { app, router } = createApp();
+        // 服务端需要拿到一个vue实例，而且每个用户都是全新的
+        router.push(context.url)
+        router.onReady(() => {
+            resolve(app);
+        }, reject)
+    })
 }
