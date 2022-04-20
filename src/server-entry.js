@@ -16,18 +16,24 @@ export default (context) => {
     // // })
 
     return new Promise((resolve, reject) => {
-        const { app, router } = createApp();
+        const { app, router, store } = createApp();
         // 服务端需要拿到一个vue实例，而且每个用户都是全新的
         router.push(context.url)
         router.onReady(() => {
             // 前端如果没有配置路由，那应该跳转到404
             const matchComponents = router.getMatchedComponents();
-            console.log('matchComponents', matchComponents);
             if (!matchComponents.length) {
                 reject({ code: 404 })
             }
-            // 此方法可以返回一个 promise，返回最终的实例
-            resolve(app);
+            Promise.all(matchComponents.map(component => {
+                if (component.changeAll) {
+                    return component.changeAll(store)
+                }
+            })).then(() => {
+                context.state = store.state
+                // 此方法可以返回一个 promise，返回最终的实例
+                resolve(app);
+            })
         }, reject)
     })
 }

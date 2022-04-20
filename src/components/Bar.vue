@@ -1,10 +1,19 @@
 <!-- Bar -->
 <template>
-  <div style="color: blue">Bar</div>
+  <div style="color: blue">
+    Bar
+    <br />
+    {{ $store.state.name }}
+    {{ $store.state.age }}
+  </div>
 </template>
 
 <script>
 export default {
+  changeAll(store) {
+    // console.log("----------------", store);
+    return store.dispatch("changeAll");
+  },
   name: "Bar",
   data() {
     return {};
