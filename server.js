@@ -29,6 +29,9 @@ router.get('*', async context => {
     try {
         context.body = await new Promise((resolve, reject) => {
             render.renderToString({ url: context.url }, (err, html) => {
+                if (err && err.code == 404) {
+                    resolve("Page Not Found")
+                }
                 resolve(html)
             })
         })
